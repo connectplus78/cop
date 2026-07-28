@@ -23,6 +23,9 @@ jobs:
       - name: Gerekli Kütüphaneleri Kur
         run: pip install beautifulsoup4
 
+      - name: Polis Klasörünü Oluştur
+        run: mkdir -p polis
+
       - name: Botu Çalıştır ve JSON Üret
         run: python polis/bot.py
 
