@@ -187,7 +187,7 @@
 
         async function haberleriGetir(){
             try {
-                const response = await fetch('https://raw.githubusercontent.com/connectplus78/cop/refs/heads/main/spor_haberleri.json');
+                const response = await fetch('https://raw.githubusercontent.com/connectplus78/cop/refs/heads/main/news.json');
                 const data = await response.json();
                 
                 globalKategoriler = data.categories || data;
