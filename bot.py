@@ -18,11 +18,12 @@ def haber_detayini_cek(url):
     headers = {
         "User-Agent": (
             "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,"
-            " like Gecko) Chrome/121.0.0.0 Safari/537.36"
+            " like Gecko) Chrome/122.0.0.0 Safari/537.36"
         ),
         "Accept": (
-            "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
+            "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8"
         ),
+        "Accept-Language": "tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7",
     }
     req = urllib.request.Request(url, headers=headers)
     with urllib.request.urlopen(req, timeout=10) as response:
@@ -42,39 +43,9 @@ def haber_detayini_cek(url):
     if meta_image and meta_image.get("content"):
       detay_resim = meta_image.get("content")
 
-    # 3. VİDEO VE MEDYA
-    videolar_html = ""
-    eklenen_videolar = set()
-    for iframe in soup.find_all("iframe"):
-      src = iframe.get("src", "")
-      if src and not any(
-          x in src
-          for x in [
-              "doubleclick",
-              "google",
-              "adsystem",
-              "facebook",
-              "twitter",
-          ]
-      ):
-        if src.startswith("//"):
-          src = "https:" + src
-        elif src.startswith("/"):
-          src = "https://www.ntvspor.net" + src
-        if src not in eklenen_videolar:
-          videolar_html += (
-              '<div class="relative w-full overflow-hidden rounded-2xl mb-8'
-              ' shadow-lg border border-gray-100" style="padding-top: 56.25%;"><iframe'
-              ' class="absolute top-0 left-0 w-full h-full" src="'
-              + src
-              + '" frameborder="0" allowfullscreen></iframe></div>'
-          )
-          eklenen_videolar.add(src)
-
-    # 4. TEMİZ METİN (NTV Spor içerik yapısına göre güncellendi)
+    # 3. TEMİZ METİN (NTV Spor paragraf yapıları için esnek arama)
     metin_html = ""
-    # NTV Spor haber detay gövdesi genellikle article veya belirli class'lar içerisindedir
-    icerik_alani = soup.find("div", class_=lambda x: x and any(c in x for c in ["news-content", "content-detail", "detail-body", "article-content"])) or soup
+    icerik_alani = soup.find("div", class_=lambda x: x and any(c in x for c in ["news-content", "content", "detail", "article"])) or soup
     
     for p in icerik_alani.find_all("p"):
       metin = p.get_text(strip=True)
@@ -83,14 +54,13 @@ def haber_detayini_cek(url):
       ):
         metin_html += f"<p class='mb-4'>{metin}</p>"
 
-    tam_icerik = videolar_html + metin_html
-    return sayfa_basligi, tam_icerik, detay_resim
+    return sayfa_basligi, metin_html, detay_resim
   except Exception as e:
+    print(f"Detay çekilirken hata ({url}): {e}")
     return None, "", None
 
 
 def ntvspor_haber_cek():
-  # NTV Spor Kategori RSS URL'leri
   kategoriler = {
       "Anasayfa": "https://www.ntvspor.net/rss/anasayfa",
       "Futbol": "https://www.ntvspor.net/rss/kategori/futbol",
@@ -117,11 +87,12 @@ def ntvspor_haber_cek():
       with urllib.request.urlopen(req, timeout=15) as response:
         xml_data = response.read()
       root = ET.fromstring(xml_data)
-    except Exception:
-      print(f"{kategori_adi} kategorisine bağlanılamadı, atlanıyor.")
+    except Exception as e:
+      print(f"{kategori_adi} RSS okunamadı: {e}")
       continue
 
     items = root.findall(".//item")[:12]
+    print(f"{kategori_adi} altında {len(items)} haber bulundu.")
 
     for item in items:
       try:
@@ -172,7 +143,8 @@ def ntvspor_haber_cek():
                 pubDate.text if pubDate is not None and pubDate.text else ""
             ),
         })
-      except Exception:
+      except Exception as inner_e:
+        print(f"Haber işlenirken hata: {inner_e}")
         continue
 
   with open("ntvspor_haberler.json", "w", encoding="utf-8") as f:
