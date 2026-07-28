@@ -1,0 +1,32 @@
+name: NTV Spor RSS Bot
+
+on:
+  schedule:
+    - cron: '0 */3 * * *' # Her 3 saatte bir çalışır
+  workflow_dispatch: # Manuel olarak GitHub panelinden tetiklenebilir
+
+permissions:
+  contents: write
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Repoyu Kopyala (Checkout)
+        uses: actions/checkout@v4
+
+      - name: Python Kurulumu
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Botu Çalıştır
+        run: python bot.py
+
+      - name: Değişiklikleri Kaydet ve Gönder (Commit & Push)
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add sports_news.json
+          git diff --quiet && git diff --cached --quiet || (git commit -m "Otomatik RSS Güncellemesi: $(date +'%Y-%m-%d %H:%M:%S')" && git push)
