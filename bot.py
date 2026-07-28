@@ -1,4 +1,5 @@
 import json
+import os
 import re
 import time
 import urllib.request
@@ -162,10 +163,14 @@ def ntvspor_haber_cek():
 
   print(f"BİLGİ - Toplam çekilen haber sayısı: {len(tum_haberler)}")
 
-  with open("ntvspor_haberler.json", "w", encoding="utf-8") as f:
+  # Dosyanın 'polis' klasörü içine kaydedilmesi sağlanmıştır
+  os.makedirs("polis", exist_ok=True)
+  dosya_yolu = "polis/ntvspor_haberler.json"
+
+  with open(dosya_yolu, "w", encoding="utf-8") as f:
     json.dump(tum_haberler, f, ensure_ascii=False, indent=4)
 
-  print("JSON dosyası başarıyla kaydedildi.")
+  print(f"JSON dosyası başarıyla kaydedildi: {dosya_yolu}")
 
 
 if __name__ == "__main__":
