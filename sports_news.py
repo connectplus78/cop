@@ -37,47 +37,42 @@ def haber_gorselini_bul(haber_url):
 def rss_verilerini_guncelle():
   tum_kategoriler = {}
 
-  try:
-    for kategori, url in RSS_URLS.items():
-      print(f"{kategori} kategorisi işleniyor...")
-      feed = feedparser.parse(url)
-      kategori_haberleri = []
+  for kategori, url in RSS_URLS.items():
+    print(f"{kategori} kategorisi işleniyor...")
+    feed = feedparser.parse(url)
+    kategori_haberleri = []
 
-      for entry in feed.entries[:15]:
-        haber_url = entry.link
-        gorsel = haber_gorselini_bul(haber_url)
+    for entry in feed.entries[:15]:
+      haber_url = entry.link
+      gorsel = haber_gorselini_bul(haber_url)
 
-        if not gorsel and "summary" in entry:
-          soup_desc = BeautifulSoup(entry.summary, "html.parser")
-          img_tag = soup_desc.find("img")
-          if img_tag and img_tag.get("src"):
-            gorsel = img_tag["src"]
+      if not gorsel and "summary" in entry:
+        soup_desc = BeautifulSoup(entry.summary, "html.parser")
+        img_tag = soup_desc.find("img")
+        if img_tag and img_tag.get("src"):
+          gorsel = img_tag["src"]
 
-        pub_date = entry.get("published", datetime.now().isoformat())
+      pub_date = entry.get("published", datetime.now().isoformat())
 
-        haber_objesi = {
-            "title": entry.title,
-            "link": haber_url,
-            "description": entry.get("summary", ""),
-            "image": gorsel,
-            "pub_date": pub_date,
-        }
-        kategori_haberleri.append(haber_objesi)
+      haber_objesi = {
+          "title": entry.title,
+          "link": haber_url,
+          "description": entry.get("summary", ""),
+          "image": gorsel,
+          "pub_date": pub_date,
+      }
+      kategori_haberleri.append(haber_objesi)
 
-      tum_kategoriler[kategori] = kategori_haberleri
+    tum_kategoriler[kategori] = kategori_haberleri
 
-    # Dosya yolunu mutlak olarak belirleyip kaydedelim
-    dosya_yolu = os.path.join(os.getcwd(), "spor_haberleri.json")
-    veri = {"updated_at": datetime.now().isoformat(), "categories": tum_kategoriler}
+  # SÖZLÜK YAPISI KESİNLİKLE İNGİLİZCE OLARAK TANIMLANDI
+  veri = {"updated_at": datetime.now().isoformat(), "categories": tum_kategoriler}
 
-    with open(dosya_yolu, "w", encoding="utf-8") as f:
-      json.dump(veri, f, ensure_ascii=False, indent=4)
+  dosya_adi = "spor_haberleri.json"
+  with open(dosya_adi, "w", encoding="utf-8") as f:
+    json.dump(veri, f, ensure_ascii=False, indent=4)
 
-    print(f"Başarılı: {dosya_yolu} oluşturuldu.")
-
-  except Exception as e:
-    print(f"Bot çalışırken hata oluştu: {e}")
-    raise e
+  print(f"{dosya_adi} başarıyla İngilizce anahtarlarla güncellendi!")
 
 
 if __name__ == "__main__":
