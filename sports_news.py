@@ -5,7 +5,6 @@ from bs4 import BeautifulSoup
 import feedparser
 import requests
 
-# Takip edilecek RSS kategorileri
 RSS_URLS = {
     "Anasayfa": "https://www.ntvspor.net/rss",
     "Futbol": "https://www.ntvspor.net/futbol/rss",
@@ -17,7 +16,6 @@ RSS_URLS = {
 
 
 def haber_gorselini_bul(haber_url):
-  """Haberin detay sayfasına giderek orijinal og:image görselini yakalar"""
   try:
     headers = {
         "User-Agent": (
@@ -67,13 +65,13 @@ def rss_verilerini_guncelle():
 
     tum_kategoriler[kategori] = kategori_haberleri
 
-  # Veriyi doğrudan ana dizine spor_haberleri.json olarak kaydediyoruz
+  # İngilizce anahtar yapısı kesin olarak tanımlandı
   veri = {"updated_at": datetime.now().isoformat(), "categories": tum_kategoriler}
 
   with open("spor_haberleri.json", "w", encoding="utf-8") as f:
     json.dump(veri, f, ensure_ascii=False, indent=4)
 
-  print("spor_haberleri.json başarıyla güncellendi!")
+  print("spor_haberleri.json başarıyla oluşturuldu!")
 
 
 if __name__ == "__main__":
