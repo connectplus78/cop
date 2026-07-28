@@ -24,12 +24,12 @@ jobs:
         run: pip install beautifulsoup4
 
       - name: Botu Çalıştır ve JSON Üret
-        run: python bot.py
+        run: python polis/bot.py
 
       - name: Güncel Haberleri GitHub'a Gönder
         run: |
           git config --global user.name "Spor Botu"
           git config --global user.email "bot@habersistemi.com"
-          git add ntvspor_haberler.json
-          git commit -m "Otomatik güncelleme: Tüm içerikler kazındı" || echo "Yeni haber yok"
+          git add polis/ntvspor_haberler.json
+          git commit -m "Otomatik güncelleme: NTV Spor haberleri çekildi" || echo "Yeni haber yok"
           git push
