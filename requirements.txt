@@ -1,1 +1,6 @@
-feedparser
+your-repo/
+├── .github/
+│   └── workflows/
+│       └── update_news.yml
+├── sports_news.py
+└── sports_news.json  (Bot çalıştıkça otomatik oluşur/güncellenir)
