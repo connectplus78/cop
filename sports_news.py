@@ -35,7 +35,7 @@ def haber_gorselini_bul(haber_url):
 
 
 def rss_verilerini_guncelle():
-  categories_data = {}
+  kategoriler_data = {}
 
   for kategori, url in RSS_URLS.items():
     print(f"{kategori} kategorisi işleniyor...")
@@ -63,21 +63,18 @@ def rss_verilerini_guncelle():
       }
       kategori_haberleri.append(haber_objesi)
 
-    categories_data[kategori] = kategori_haberleri
+    kategoriler_data[kategori] = kategori_haberleri
 
-  # Dosyanın kesinlikle ana dizine kaydedilmesi için mutlak yol
-  taban_dizin = os.path.dirname(os.path.abspath(__file__))
-  dosya_yolu = os.path.join(taban_dizin, "spor_haberleri.json")
-
+  # JSON yapısı ekrandaki Türkçe anahtarlarla birebir aynı yapıldı
   veri = {
-      "updated_at": datetime.now().isoformat(),
-      "categories": categories_data,
+      "güncellendi": datetime.now().isoformat(),
+      "kategoriler": kategoriler_data,
   }
 
-  with open(dosya_yolu, "w", encoding="utf-8") as f:
+  with open("spor_haberleri.json", "w", encoding="utf-8") as f:
     json.dump(veri, f, ensure_ascii=False, indent=4)
 
-  print(f"Başarılı: {dosya_yolu} oluşturuldu.")
+  print("spor_haberleri.json başarıyla güncellendi!")
 
 
 if __name__ == "__main__":
