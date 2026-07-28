@@ -1,7 +1,6 @@
 import json
-import xml.etree.ElementTree as ET
-import urllib.request
 from datetime import datetime
+import feedparser
 
 # Kullanılacak RSS Linkleri
 RSS_URLS = {
@@ -15,34 +14,23 @@ RSS_URLS = {
 
 def fetch_rss(url):
     try:
-        # Gerçek bir tarayıcı gibi görünmek için detaylı header bilgileri ekliyoruz
-        headers = {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-            'Accept': 'application/rss+xml, application/xml, text/xml, */*',
-            'Accept-Language': 'tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7'
-        }
+        # Bot engellerini aşmak için tarayıcı başlıkları (User-Agent) ile parse ediyoruz
+        d = feedparser.parse(url, agent='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36')
         
-        req = urllib.request.Request(url, headers=headers)
-        with urllib.request.urlopen(req) as response:
-            xml_data = response.read()
-            root = ET.fromstring(xml_data)
+        items = []
+        for entry in d.entries:
+            title = entry.get('title', '')
+            link = entry.get('link', '')
+            description = entry.get('description', '')
+            pub_date = entry.get('published', entry.get('updated', ''))
             
-            items = []
-            channel = root.find('channel')
-            if channel is not None:
-                for item in channel.findall('item'):
-                    title = item.find('title').text if item.find('title') is not None else ""
-                    link = item.find('link').text if item.find('link') is not None else ""
-                    description = item.find('description').text if item.find('description') is not None else ""
-                    pub_date = item.find('pubDate').text if item.find('pubDate') is not None else ""
-                    
-                    items.append({
-                        "title": title.strip(),
-                        "link": link.strip(),
-                        "description": description.strip(),
-                        "pubDate": pub_date.strip()
-                    })
-            return items
+            items.append({
+                "title": title.strip(),
+                "link": link.strip(),
+                "description": description.strip(),
+                "pubDate": pub_date.strip()
+            })
+        return items
     except Exception as e:
         print(f"Hata oluştu ({url}): {e}")
         return []
