@@ -1,0 +1,647 @@
+{
+    "güncellendi": "2026-07-28T16:49:14.726584",
+    "kategoriler": {
+        "Anasayfa": [
+            {
+                "title": "Türkiye Kupası",
+                "link": "https://www.ntvspor.net/futbol/lig/ziraat-turkiye-kupasi",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:13.814738"
+            },
+            {
+                "title": "UEFA Şampiyonlar Ligi",
+                "link": "https://www.ntvspor.net/futbol/lig/sampiyonlar-ligi",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:13.814807"
+            },
+            {
+                "title": "UEFA Avrupa Ligi",
+                "link": "https://www.ntvspor.net/futbol/lig/uefa-avrupa-ligi",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:13.814859"
+            },
+            {
+                "title": "UEFA Konferans Ligi",
+                "link": "https://www.ntvspor.net/futbol/lig/uefa-konferans-ligi",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:13.814907"
+            },
+            {
+                "title": "İspanya La Liga",
+                "link": "https://www.ntvspor.net/futbol/lig/ispanya-la-liga",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:13.814956"
+            },
+            {
+                "title": "İngiltere Premier Ligi",
+                "link": "https://www.ntvspor.net/futbol/lig/ingiltere-premier-ligi",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:13.815003"
+            },
+            {
+                "title": "Almanya Bundesliga",
+                "link": "https://www.ntvspor.net/futbol/lig/almanya-bundesliga",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:13.815049"
+            },
+            {
+                "title": "İtalya Serie A",
+                "link": "https://www.ntvspor.net/futbol/lig/italya-serie-a",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:13.815095"
+            },
+            {
+                "title": "Fransa Ligue 1",
+                "link": "https://www.ntvspor.net/futbol/lig/fransa-ligue-1",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:13.815142"
+            },
+            {
+                "title": "Avrupa Şampiyonası",
+                "link": "https://www.ntvspor.net/futbol/lig/avrupa-futbol-sampiyonasi",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:13.815189"
+            },
+            {
+                "title": "Turkcell Kadın Futbol Süper Ligi",
+                "link": "https://www.ntvspor.net/futbol/lig/kadin-futbol-super-ligi",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:13.815238"
+            },
+            {
+                "title": "Türkiye Sigorta Basketbol Süper Ligi",
+                "link": "https://www.ntvspor.net/basketbol/lig/turkiye-basketbol-super-ligi",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:13.815520"
+            },
+            {
+                "title": "Avrupa Şampiyonası",
+                "link": "https://www.ntvspor.net/basketbol/lig/avrupa-basketbol-sampiyonasi",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:13.815571"
+            },
+            {
+                "title": "Türkiye Kupası",
+                "link": "https://www.ntvspor.net/basketbol/lig/turkiye-federasyon-kupasi",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:13.815620"
+            },
+            {
+                "title": "ING Nutrition Kadınlar Basketbol Ligi",
+                "link": "https://www.ntvspor.net/basketbol/lig/turkiye-kadinlar-basketbol-ligi",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:13.815667"
+            }
+        ],
+        "Futbol": [
+            {
+                "title": "Türkiye Kupası",
+                "link": "https://www.ntvspor.net/futbol/lig/ziraat-turkiye-kupasi",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:13.987932"
+            },
+            {
+                "title": "UEFA Şampiyonlar Ligi",
+                "link": "https://www.ntvspor.net/futbol/lig/sampiyonlar-ligi",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:13.988000"
+            },
+            {
+                "title": "UEFA Avrupa Ligi",
+                "link": "https://www.ntvspor.net/futbol/lig/uefa-avrupa-ligi",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:13.988053"
+            },
+            {
+                "title": "UEFA Konferans Ligi",
+                "link": "https://www.ntvspor.net/futbol/lig/uefa-konferans-ligi",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:13.988105"
+            },
+            {
+                "title": "İspanya La Liga",
+                "link": "https://www.ntvspor.net/futbol/lig/ispanya-la-liga",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:13.988156"
+            },
+            {
+                "title": "İngiltere Premier Ligi",
+                "link": "https://www.ntvspor.net/futbol/lig/ingiltere-premier-ligi",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:13.988215"
+            },
+            {
+                "title": "Almanya Bundesliga",
+                "link": "https://www.ntvspor.net/futbol/lig/almanya-bundesliga",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:13.988271"
+            },
+            {
+                "title": "İtalya Serie A",
+                "link": "https://www.ntvspor.net/futbol/lig/italya-serie-a",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:13.988321"
+            },
+            {
+                "title": "Fransa Ligue 1",
+                "link": "https://www.ntvspor.net/futbol/lig/fransa-ligue-1",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:13.988370"
+            },
+            {
+                "title": "Avrupa Şampiyonası",
+                "link": "https://www.ntvspor.net/futbol/lig/avrupa-futbol-sampiyonasi",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:13.988439"
+            },
+            {
+                "title": "Turkcell Kadın Futbol Süper Ligi",
+                "link": "https://www.ntvspor.net/futbol/lig/kadin-futbol-super-ligi",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:13.988494"
+            },
+            {
+                "title": "Türkiye Sigorta Basketbol Süper Ligi",
+                "link": "https://www.ntvspor.net/basketbol/lig/turkiye-basketbol-super-ligi",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:13.988753"
+            },
+            {
+                "title": "Avrupa Şampiyonası",
+                "link": "https://www.ntvspor.net/basketbol/lig/avrupa-basketbol-sampiyonasi",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:13.988802"
+            },
+            {
+                "title": "Türkiye Kupası",
+                "link": "https://www.ntvspor.net/basketbol/lig/turkiye-federasyon-kupasi",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:13.988851"
+            },
+            {
+                "title": "ING Nutrition Kadınlar Basketbol Ligi",
+                "link": "https://www.ntvspor.net/basketbol/lig/turkiye-kadinlar-basketbol-ligi",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:13.988898"
+            }
+        ],
+        "Dünyadan Futbol": [
+            {
+                "title": "Türkiye Kupası",
+                "link": "https://www.ntvspor.net/futbol/lig/ziraat-turkiye-kupasi",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:14.174794"
+            },
+            {
+                "title": "UEFA Şampiyonlar Ligi",
+                "link": "https://www.ntvspor.net/futbol/lig/sampiyonlar-ligi",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:14.174858"
+            },
+            {
+                "title": "UEFA Avrupa Ligi",
+                "link": "https://www.ntvspor.net/futbol/lig/uefa-avrupa-ligi",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:14.174910"
+            },
+            {
+                "title": "UEFA Konferans Ligi",
+                "link": "https://www.ntvspor.net/futbol/lig/uefa-konferans-ligi",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:14.174966"
+            },
+            {
+                "title": "İspanya La Liga",
+                "link": "https://www.ntvspor.net/futbol/lig/ispanya-la-liga",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:14.175016"
+            },
+            {
+                "title": "İngiltere Premier Ligi",
+                "link": "https://www.ntvspor.net/futbol/lig/ingiltere-premier-ligi",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:14.175066"
+            },
+            {
+                "title": "Almanya Bundesliga",
+                "link": "https://www.ntvspor.net/futbol/lig/almanya-bundesliga",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:14.175114"
+            },
+            {
+                "title": "İtalya Serie A",
+                "link": "https://www.ntvspor.net/futbol/lig/italya-serie-a",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:14.175161"
+            },
+            {
+                "title": "Fransa Ligue 1",
+                "link": "https://www.ntvspor.net/futbol/lig/fransa-ligue-1",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:14.175209"
+            },
+            {
+                "title": "Avrupa Şampiyonası",
+                "link": "https://www.ntvspor.net/futbol/lig/avrupa-futbol-sampiyonasi",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:14.175258"
+            },
+            {
+                "title": "Turkcell Kadın Futbol Süper Ligi",
+                "link": "https://www.ntvspor.net/futbol/lig/kadin-futbol-super-ligi",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:14.175308"
+            },
+            {
+                "title": "Türkiye Sigorta Basketbol Süper Ligi",
+                "link": "https://www.ntvspor.net/basketbol/lig/turkiye-basketbol-super-ligi",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:14.175597"
+            },
+            {
+                "title": "Avrupa Şampiyonası",
+                "link": "https://www.ntvspor.net/basketbol/lig/avrupa-basketbol-sampiyonasi",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:14.175645"
+            },
+            {
+                "title": "Türkiye Kupası",
+                "link": "https://www.ntvspor.net/basketbol/lig/turkiye-federasyon-kupasi",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:14.175693"
+            },
+            {
+                "title": "ING Nutrition Kadınlar Basketbol Ligi",
+                "link": "https://www.ntvspor.net/basketbol/lig/turkiye-kadinlar-basketbol-ligi",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:14.175745"
+            }
+        ],
+        "Voleybol": [
+            {
+                "title": "Türkiye Kupası",
+                "link": "https://www.ntvspor.net/futbol/lig/ziraat-turkiye-kupasi",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:14.347903"
+            },
+            {
+                "title": "UEFA Şampiyonlar Ligi",
+                "link": "https://www.ntvspor.net/futbol/lig/sampiyonlar-ligi",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:14.347971"
+            },
+            {
+                "title": "UEFA Avrupa Ligi",
+                "link": "https://www.ntvspor.net/futbol/lig/uefa-avrupa-ligi",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:14.348025"
+            },
+            {
+                "title": "UEFA Konferans Ligi",
+                "link": "https://www.ntvspor.net/futbol/lig/uefa-konferans-ligi",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:14.348075"
+            },
+            {
+                "title": "İspanya La Liga",
+                "link": "https://www.ntvspor.net/futbol/lig/ispanya-la-liga",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:14.348126"
+            },
+            {
+                "title": "İngiltere Premier Ligi",
+                "link": "https://www.ntvspor.net/futbol/lig/ingiltere-premier-ligi",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:14.348175"
+            },
+            {
+                "title": "Almanya Bundesliga",
+                "link": "https://www.ntvspor.net/futbol/lig/almanya-bundesliga",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:14.348222"
+            },
+            {
+                "title": "İtalya Serie A",
+                "link": "https://www.ntvspor.net/futbol/lig/italya-serie-a",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:14.348269"
+            },
+            {
+                "title": "Fransa Ligue 1",
+                "link": "https://www.ntvspor.net/futbol/lig/fransa-ligue-1",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:14.348317"
+            },
+            {
+                "title": "Avrupa Şampiyonası",
+                "link": "https://www.ntvspor.net/futbol/lig/avrupa-futbol-sampiyonasi",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:14.348366"
+            },
+            {
+                "title": "Turkcell Kadın Futbol Süper Ligi",
+                "link": "https://www.ntvspor.net/futbol/lig/kadin-futbol-super-ligi",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:14.348438"
+            },
+            {
+                "title": "Türkiye Sigorta Basketbol Süper Ligi",
+                "link": "https://www.ntvspor.net/basketbol/lig/turkiye-basketbol-super-ligi",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:14.348702"
+            },
+            {
+                "title": "Avrupa Şampiyonası",
+                "link": "https://www.ntvspor.net/basketbol/lig/avrupa-basketbol-sampiyonasi",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:14.348750"
+            },
+            {
+                "title": "Türkiye Kupası",
+                "link": "https://www.ntvspor.net/basketbol/lig/turkiye-federasyon-kupasi",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:14.348798"
+            },
+            {
+                "title": "ING Nutrition Kadınlar Basketbol Ligi",
+                "link": "https://www.ntvspor.net/basketbol/lig/turkiye-kadinlar-basketbol-ligi",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:14.348845"
+            }
+        ],
+        "Tenis": [
+            {
+                "title": "Türkiye Kupası",
+                "link": "https://www.ntvspor.net/futbol/lig/ziraat-turkiye-kupasi",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:14.559881"
+            },
+            {
+                "title": "UEFA Şampiyonlar Ligi",
+                "link": "https://www.ntvspor.net/futbol/lig/sampiyonlar-ligi",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:14.559948"
+            },
+            {
+                "title": "UEFA Avrupa Ligi",
+                "link": "https://www.ntvspor.net/futbol/lig/uefa-avrupa-ligi",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:14.560001"
+            },
+            {
+                "title": "UEFA Konferans Ligi",
+                "link": "https://www.ntvspor.net/futbol/lig/uefa-konferans-ligi",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:14.560056"
+            },
+            {
+                "title": "İspanya La Liga",
+                "link": "https://www.ntvspor.net/futbol/lig/ispanya-la-liga",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:14.560106"
+            },
+            {
+                "title": "İngiltere Premier Ligi",
+                "link": "https://www.ntvspor.net/futbol/lig/ingiltere-premier-ligi",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:14.560155"
+            },
+            {
+                "title": "Almanya Bundesliga",
+                "link": "https://www.ntvspor.net/futbol/lig/almanya-bundesliga",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:14.560204"
+            },
+            {
+                "title": "İtalya Serie A",
+                "link": "https://www.ntvspor.net/futbol/lig/italya-serie-a",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:14.560252"
+            },
+            {
+                "title": "Fransa Ligue 1",
+                "link": "https://www.ntvspor.net/futbol/lig/fransa-ligue-1",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:14.560301"
+            },
+            {
+                "title": "Avrupa Şampiyonası",
+                "link": "https://www.ntvspor.net/futbol/lig/avrupa-futbol-sampiyonasi",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:14.560351"
+            },
+            {
+                "title": "Turkcell Kadın Futbol Süper Ligi",
+                "link": "https://www.ntvspor.net/futbol/lig/kadin-futbol-super-ligi",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:14.560422"
+            },
+            {
+                "title": "Türkiye Sigorta Basketbol Süper Ligi",
+                "link": "https://www.ntvspor.net/basketbol/lig/turkiye-basketbol-super-ligi",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:14.560691"
+            },
+            {
+                "title": "Avrupa Şampiyonası",
+                "link": "https://www.ntvspor.net/basketbol/lig/avrupa-basketbol-sampiyonasi",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:14.560740"
+            },
+            {
+                "title": "Türkiye Kupası",
+                "link": "https://www.ntvspor.net/basketbol/lig/turkiye-federasyon-kupasi",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:14.560788"
+            },
+            {
+                "title": "ING Nutrition Kadınlar Basketbol Ligi",
+                "link": "https://www.ntvspor.net/basketbol/lig/turkiye-kadinlar-basketbol-ligi",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:14.560836"
+            }
+        ],
+        "Basketbol": [
+            {
+                "title": "Türkiye Kupası",
+                "link": "https://www.ntvspor.net/futbol/lig/ziraat-turkiye-kupasi",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:14.725596"
+            },
+            {
+                "title": "UEFA Şampiyonlar Ligi",
+                "link": "https://www.ntvspor.net/futbol/lig/sampiyonlar-ligi",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:14.725670"
+            },
+            {
+                "title": "UEFA Avrupa Ligi",
+                "link": "https://www.ntvspor.net/futbol/lig/uefa-avrupa-ligi",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:14.725724"
+            },
+            {
+                "title": "UEFA Konferans Ligi",
+                "link": "https://www.ntvspor.net/futbol/lig/uefa-konferans-ligi",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:14.725775"
+            },
+            {
+                "title": "İspanya La Liga",
+                "link": "https://www.ntvspor.net/futbol/lig/ispanya-la-liga",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:14.725826"
+            },
+            {
+                "title": "İngiltere Premier Ligi",
+                "link": "https://www.ntvspor.net/futbol/lig/ingiltere-premier-ligi",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:14.725875"
+            },
+            {
+                "title": "Almanya Bundesliga",
+                "link": "https://www.ntvspor.net/futbol/lig/almanya-bundesliga",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:14.725925"
+            },
+            {
+                "title": "İtalya Serie A",
+                "link": "https://www.ntvspor.net/futbol/lig/italya-serie-a",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:14.725974"
+            },
+            {
+                "title": "Fransa Ligue 1",
+                "link": "https://www.ntvspor.net/futbol/lig/fransa-ligue-1",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:14.726024"
+            },
+            {
+                "title": "Avrupa Şampiyonası",
+                "link": "https://www.ntvspor.net/futbol/lig/avrupa-futbol-sampiyonasi",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:14.726073"
+            },
+            {
+                "title": "Turkcell Kadın Futbol Süper Ligi",
+                "link": "https://www.ntvspor.net/futbol/lig/kadin-futbol-super-ligi",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:14.726128"
+            },
+            {
+                "title": "Türkiye Sigorta Basketbol Süper Ligi",
+                "link": "https://www.ntvspor.net/basketbol/lig/turkiye-basketbol-super-ligi",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:14.726426"
+            },
+            {
+                "title": "Avrupa Şampiyonası",
+                "link": "https://www.ntvspor.net/basketbol/lig/avrupa-basketbol-sampiyonasi",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:14.726481"
+            },
+            {
+                "title": "Türkiye Kupası",
+                "link": "https://www.ntvspor.net/basketbol/lig/turkiye-federasyon-kupasi",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:14.726532"
+            },
+            {
+                "title": "ING Nutrition Kadınlar Basketbol Ligi",
+                "link": "https://www.ntvspor.net/basketbol/lig/turkiye-kadinlar-basketbol-ligi",
+                "description": "",
+                "image": null,
+                "pub_date": "2026-07-28T16:49:14.726580"
+            }
+        ]
+    }
+}
