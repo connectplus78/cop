@@ -163,9 +163,8 @@ def ntvspor_haber_cek():
 
   print(f"BİLGİ - Toplam çekilen haber sayısı: {len(tum_haberler)}")
 
-  # Dosyanın 'polis' klasörü içine kaydedilmesi sağlanmıştır
-  os.makedirs("polis", exist_ok=True)
-  dosya_yolu = "polis/ntvspor_haberler.json"
+  # Dosya doğrudan ana dizine kaydediliyor
+  dosya_yolu = "ntvspor_haberler.json"
 
   with open(dosya_yolu, "w", encoding="utf-8") as f:
     json.dump(tum_haberler, f, ensure_ascii=False, indent=4)
