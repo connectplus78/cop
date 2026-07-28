@@ -20,7 +20,6 @@ jobs:
         with:
           python-version: '3.10'
 
-      # YENİ EKLENEN ADIM: Kazıma kütüphanesini kuruyoruz
       - name: Gerekli Kütüphaneleri Kur
         run: pip install beautifulsoup4
 
@@ -31,6 +30,6 @@ jobs:
         run: |
           git config --global user.name "Spor Botu"
           git config --global user.email "bot@habersistemi.com"
-          git add spor.json
+          git add ntvspor_haberler.json
           git commit -m "Otomatik güncelleme: Tüm içerikler kazındı" || echo "Yeni haber yok"
           git push
