@@ -74,7 +74,7 @@ def rss_verilerini_guncelle():
   with open("spor_haberleri.json", "w", encoding="utf-8") as f:
     json.dump(veri, f, ensure_ascii=False, indent=4)
 
-  print("sports_news.json başarıyla güncellendi!")
+  print("spor_haberleri.json başarıyla güncellendi!")
 
 
 if __name__ == "__main__":
