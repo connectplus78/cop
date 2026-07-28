@@ -1,7 +1,5 @@
 from datetime import datetime
 import json
-import os
-from bs4 import BeautifulSoup
 import feedparser
 import requests
 
@@ -15,65 +13,62 @@ RSS_URLS = {
 }
 
 
-def haber_gorselini_bul(haber_url):
-  try:
-    headers = {
-        "User-Agent": (
-            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,"
-            " like Gecko) Chrome/120.0.0.0 Safari/537.36"
-        )
-    }
-    response = requests.get(haber_url, headers=headers, timeout=10)
-    if response.status_code == 200:
-      soup = BeautifulSoup(response.content, "html.parser")
-      og_image = soup.find("meta", property="og:image")
-      if og_image and og_image.get("content"):
-        return og_image["content"]
-  except Exception as e:
-    print(f"Görsel alınamadı ({haber_url}): {e}")
-  return None
+def fetch_news():
+  categories_data = {}
 
-
-def rss_verilerini_guncelle():
-  tum_kategoriler = {}
-
-  for kategori, url in RSS_URLS.items():
-    print(f"{kategori} kategorisi işleniyor...")
+  for cat_name, url in RSS_URLS.items():
+    print(f"İşleniyor: {cat_name}")
     feed = feedparser.parse(url)
-    kategori_haberleri = []
+    items = []
 
     for entry in feed.entries[:15]:
-      haber_url = entry.link
-      gorsel = haber_gorselini_bul(haber_url)
+      link = entry.link
+      image_url = None
 
-      if not gorsel and "summary" in entry:
-        soup_desc = BeautifulSoup(entry.summary, "html.parser")
-        img_tag = soup_desc.find("img")
-        if img_tag and img_tag.get("src"):
-          gorsel = img_tag["src"]
+      try:
+        res = requests.get(
+            link,
+            headers={"User-Agent": "Mozilla/5.0"},
+            timeout=8,
+        )
+        if res.status_code == 200:
+          from bs4 import BeautifulSoup
 
-      pub_date = entry.get("published", datetime.now().isoformat())
+          soup = BeautifulSoup(res.content, "html.parser")
+          og = soup.find("meta", property="og:image")
+          if og and og.get("content"):
+            image_url = og["content"]
+      except:
+        pass
 
-      haber_objesi = {
+      if not image_url and "summary" in entry:
+        from bs4 import BeautifulSoup
+
+        s = BeautifulSoup(entry.summary, "html.parser")
+        img = s.find("img")
+        if img and img.get("src"):
+          image_url = img["src"]
+
+      items.append({
           "title": entry.title,
-          "link": haber_url,
+          "link": link,
           "description": entry.get("summary", ""),
-          "image": gorsel,
-          "pub_date": pub_date,
-      }
-      kategori_haberleri.append(haber_objesi)
+          "image": image_url,
+          "pub_date": entry.get("published", datetime.now().isoformat()),
+      })
 
-    tum_kategoriler[kategori] = kategori_haberleri
+    categories_data[cat_name] = items
 
-  # SÖZLÜK YAPISI KESİNLİKLE İNGİLİZCE OLARAK TANIMLANDI
-  veri = {"updated_at": datetime.now().isoformat(), "categories": tum_kategoriler}
+  final_output = {
+      "updated_at": datetime.now().isoformat(),
+      "categories": categories_data,
+  }
 
-  dosya_adi = "spor_haberleri.json"
-  with open(dosya_adi, "w", encoding="utf-8") as f:
-    json.dump(veri, f, ensure_ascii=False, indent=4)
+  with open("spor_haberleri.json", "w", encoding="utf-8") as f:
+    json.dump(final_output, f, ensure_ascii=False, indent=4)
 
-  print(f"{dosya_adi} başarıyla İngilizce anahtarlarla güncellendi!")
+  print("Dosya başarıyla güncellendi.")
 
 
 if __name__ == "__main__":
-  rss_verilerini_guncelle()
+  fetch_news()
