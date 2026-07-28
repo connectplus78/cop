@@ -29,8 +29,8 @@ jobs:
 
       - name: Güncel Haberleri GitHub'a Gönder
         run: |
-          git config --global user.name "Haber Botu"
+          git config --global user.name "Spor Botu"
           git config --global user.email "bot@habersistemi.com"
-          git add haberler.json
+          git add spor.json
           git commit -m "Otomatik güncelleme: Tüm içerikler kazındı" || echo "Yeni haber yok"
           git push
