@@ -71,7 +71,7 @@ def rss_verilerini_guncelle():
   # Web arayüzünün doğrudan eşleşmesi için İngilizce anahtarlar (updated_at ve categories)
   veri = {"updated_at": datetime.now().isoformat(), "categories": tum_kategoriler}
 
-  with open("sports_news.json", "w", encoding="utf-8") as f:
+  with open("spor_haberleri.json", "w", encoding="utf-8") as f:
     json.dump(veri, f, ensure_ascii=False, indent=4)
 
   print("sports_news.json başarıyla güncellendi!")
