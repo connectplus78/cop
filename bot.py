@@ -15,16 +15,19 @@ RSS_URLS = {
 
 def fetch_rss(url):
     try:
-        req = urllib.request.Request(
-            url, 
-            headers={'User-Agent': 'Mozilla/5.0'}
-        )
+        # Gerçek bir tarayıcı gibi görünmek için detaylı header bilgileri ekliyoruz
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+            'Accept': 'application/rss+xml, application/xml, text/xml, */*',
+            'Accept-Language': 'tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7'
+        }
+        
+        req = urllib.request.Request(url, headers=headers)
         with urllib.request.urlopen(req) as response:
             xml_data = response.read()
             root = ET.fromstring(xml_data)
             
             items = []
-            # RSS yapısındaki item/entry etiketlerini okuma
             channel = root.find('channel')
             if channel is not None:
                 for item in channel.findall('item'):
