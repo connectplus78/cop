@@ -1,78 +1,55 @@
 from datetime import datetime
 import json
-import os
-from bs4 import BeautifulSoup
 import feedparser
-import requests
 
+# NTV Spor RSS adresleri
 RSS_URLS = {
-    "Anasayfa": "https://www.ntvspor.net/rss",
-    "Futbol": "https://www.ntvspor.net/futbol/rss",
-    "Dünyadan Futbol": "https://www.ntvspor.net/dunyadan-futbol/rss",
-    "Voleybol": "https://www.ntvspor.net/voleybol/rss",
-    "Tenis": "https://www.ntvspor.net/tenis/rss",
-    "Basketbol": "https://www.ntvspor.net/basketbol/rss",
+    "Anasayfa": "https://www.ntvspor.net/rss/anasayfa",
+    "Futbol": "https://www.ntvspor.net/rss/kategori/futbol",
+    "Dünyadan Futbol": "https://www.ntvspor.net/rss/kategori/dunyadan-futbol",
+    "Voleybol": "https://www.ntvspor.net/rss/kategori/voleybol",
+    "Tenis": "https://www.ntvspor.net/rss/kategori/tenis",
+    "Basketbol": "https://www.ntvspor.net/rss/kategori/basketbol",
 }
 
+def fetch_rss(url):
+    try:
+        # feedparser kullanarak RSS verisini güvenle çekiyoruz
+        feed = feedparser.parse(url)
+        items = []
+        
+        for entry in feed.entries:
+            title = entry.get("title", "")
+            link = entry.get("link", "")
+            pub_date = entry.get("published", entry.get("updated", ""))
+            description = entry.get("summary", entry.get("description", ""))
+            
+            items.append({
+                "title": title.strip(),
+                "link": link.strip(),
+                "pub_date": pub_date.strip(),
+                "description": description.strip()
+            })
+        return items
+    except Exception as e:
+        print(f"Hata oluştu ({url}): {e}")
+        return []
 
-def haber_gorselini_bul(haber_url):
-  try:
-    headers = {
-        "User-Agent": (
-            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,"
-            " like Gecko) Chrome/120.0.0.0 Safari/537.36"
-        )
+def main():
+    all_data = {}
+    for category, url in RSS_URLS.items():
+        print(f"Çekiliyor: {category}")
+        all_data[category] = fetch_rss(url)
+
+    output = {
+        "updated_at": datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC"),
+        "categories": all_data
     }
-    response = requests.get(haber_url, headers=headers, timeout=10)
-    if response.status_code == 200:
-      soup = BeautifulSoup(response.content, "html.parser")
-      og_image = soup.find("meta", property="og:image")
-      if og_image and og_image.get("content"):
-        return og_image["content"]
-  except Exception as e:
-    print(f"Görsel alınamadı ({haber_url}): {e}")
-  return None
 
+    with open("sports_news.json", "w", encoding="utf-8") as f:
+        json.dump(output, f, ensure_ascii=False, indent=4)
 
-def rss_verilerini_guncelle():
-  tum_kategoriler = {}
-
-  for kategori, url in RSS_URLS.items():
-    print(f"{kategori} kategorisi işleniyor...")
-    feed = feedparser.parse(url)
-    kategori_haberleri = []
-
-    for entry in feed.entries[:15]:
-      haber_url = entry.link
-      gorsel = haber_gorselini_bul(haber_url)
-
-      if not gorsel and "summary" in entry:
-        soup_desc = BeautifulSoup(entry.summary, "html.parser")
-        img_tag = soup_desc.find("img")
-        if img_tag and img_tag.get("src"):
-          gorsel = img_tag["src"]
-
-      pub_date = entry.get("published", datetime.now().isoformat())
-
-      haber_objesi = {
-          "title": entry.title,
-          "link": haber_url,
-          "description": entry.get("summary", ""),
-          "image": gorsel,
-          "pub_date": pub_date,
-      }
-      kategori_haberleri.append(haber_objesi)
-
-    tum_kategoriler[kategori] = kategori_haberleri
-
-  # İngilizce anahtar yapısı kesin olarak tanımlandı
-  veri = {"updated_at": datetime.now().isoformat(), "categories": tum_kategoriler}
-
-  with open("spor_haberleri.json", "w", encoding="utf-8") as f:
-    json.dump(veri, f, ensure_ascii=False, indent=4)
-
-  print("spor_haberleri.json başarıyla oluşturuldu!")
-
+    print("Veriler başarıyla sports_news.json dosyasına kaydedildi.")
 
 if __name__ == "__main__":
-  rss_verilerini_guncelle()
+    main()
