@@ -44,7 +44,6 @@ def rss_verilerini_guncelle():
     feed = feedparser.parse(url)
     kategori_haberleri = []
 
-    # Her kategoriden en son 15 haberi alalım
     for entry in feed.entries[:15]:
       haber_url = entry.link
       gorsel = haber_gorselini_bul(haber_url)
@@ -68,13 +67,16 @@ def rss_verilerini_guncelle():
 
     tum_kategoriler[kategori] = kategori_haberleri
 
-  # Web arayüzünün doğrudan eşleşmesi için İngilizce anahtarlar (updated_at ve categories)
+  # polis klasörünü otomatik oluştur
+  os.makedirs("polis", exist_ok=True)
+
+  # Veriyi polis/spor_haberleri.json olarak kaydet
   veri = {"updated_at": datetime.now().isoformat(), "categories": tum_kategoriler}
 
-  with open("spor_haberleri.json", "w", encoding="utf-8") as f:
+  with open("polis/spor_haberleri.json", "w", encoding="utf-8") as f:
     json.dump(veri, f, ensure_ascii=False, indent=4)
 
-  print("spor_haberleri.json başarıyla güncellendi!")
+  print("polis/spor_haberleri.json başarıyla güncellendi!")
 
 
 if __name__ == "__main__":
