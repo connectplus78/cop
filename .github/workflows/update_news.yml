@@ -2,9 +2,8 @@ name: Update Sports News
 
 on:
   schedule:
-    # 3 saatte bir çalışır
     - cron: '0 */3 * * *'
-  workflow_dispatch: # Manuel olarak istediğiniz zaman "Run workflow" diyerek tetikleyebilirsiniz
+  workflow_dispatch:
 
 jobs:
   update-news:
@@ -33,6 +32,6 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add sports_news.json
+          git add polis/spor_haberleri.json
           git commit -m "Otomatik haber güncellemesi: $(date +'%Y-%m-%d %H:%M:%S')" || exit 0
           git push
