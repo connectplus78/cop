@@ -67,10 +67,10 @@ def rss_verilerini_guncelle():
 
     tum_kategoriler[kategori] = kategori_haberleri
 
-  # polis klasörünü otomatik oluştur
+  # polis klasörünü garantiye alalım
   os.makedirs("polis", exist_ok=True)
 
-  # Veriyi polis/spor_haberleri.json olarak kaydet
+  # Web arayüzü ile uyumlu olması için kesinlikle İngilizce anahtarlar kullanılıyor
   veri = {"updated_at": datetime.now().isoformat(), "categories": tum_kategoriler}
 
   with open("polis/spor_haberleri.json", "w", encoding="utf-8") as f:
