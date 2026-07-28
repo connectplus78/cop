@@ -43,10 +43,20 @@ def haber_detayini_cek(url):
     if meta_image and meta_image.get("content"):
       detay_resim = meta_image.get("content")
 
-    # 3. TEMİZ METİN (NTV Spor paragraf yapıları için esnek arama)
+    # 3. TEMİZ METİN
     metin_html = ""
-    icerik_alani = soup.find("div", class_=lambda x: x and any(c in x for c in ["news-content", "content", "detail", "article"])) or soup
-    
+    icerik_alani = (
+        soup.find(
+            "div",
+            class_=lambda x: x
+            and any(
+                c in x
+                for c in ["news-content", "content", "detail", "article"]
+            ),
+        )
+        or soup
+    )
+
     for p in icerik_alani.find_all("p"):
       metin = p.get_text(strip=True)
       if len(metin) > 20 and not any(
@@ -56,7 +66,7 @@ def haber_detayini_cek(url):
 
     return sayfa_basligi, metin_html, detay_resim
   except Exception as e:
-    print(f"Detay çekilirken hata ({url}): {e}")
+    print(f"HATA - Detay çekilemedi ({url}): {e}")
     return None, "", None
 
 
@@ -67,13 +77,13 @@ def ntvspor_haber_cek():
       "Dünyadan Futbol": "https://www.ntvspor.net/rss/kategori/dunyadan-futbol",
       "Voleybol": "https://www.ntvspor.net/rss/kategori/voleybol",
       "Tenis": "https://www.ntvspor.net/rss/kategori/tenis",
-      "Basketbol": "https://www.ntvspor.net/rss/kategori/basketbol"
+      "Basketbol": "https://www.ntvspor.net/rss/kategori/basketbol",
   }
 
   tum_haberler = []
 
   for kategori_adi, url in kategoriler.items():
-    print(f"Kategori işleniyor: {kategori_adi}...")
+    print(f"Kategori işleniyor: {kategori_adi} ({url})")
     req = urllib.request.Request(
         url,
         headers={
@@ -88,11 +98,14 @@ def ntvspor_haber_cek():
         xml_data = response.read()
       root = ET.fromstring(xml_data)
     except Exception as e:
-      print(f"{kategori_adi} RSS okunamadı: {e}")
+      print(f"HATA - {kategori_adi} RSS okunamadı: {e}")
       continue
 
-    items = root.findall(".//item")[:12]
-    print(f"{kategori_adi} altında {len(items)} haber bulundu.")
+    items = root.findall(".//item")
+    print(
+        f"BİLGİ - {kategori_adi} kategorisinde toplam {len(items)} öğe bulundu."
+    )
+    items = items[:12]
 
     for item in items:
       try:
@@ -144,13 +157,15 @@ def ntvspor_haber_cek():
             ),
         })
       except Exception as inner_e:
-        print(f"Haber işlenirken hata: {inner_e}")
+        print(f"HATA - Haber işlenirken hata oluştu: {inner_e}")
         continue
+
+  print(f"BİLGİ - Toplam çekilen haber sayısı: {len(tum_haberler)}")
 
   with open("ntvspor_haberler.json", "w", encoding="utf-8") as f:
     json.dump(tum_haberler, f, ensure_ascii=False, indent=4)
 
-  print(f"Toplam {len(tum_haberler)} adet NTV Spor haberi başarıyla çekildi.")
+  print("JSON dosyası başarıyla kaydedildi.")
 
 
 if __name__ == "__main__":
