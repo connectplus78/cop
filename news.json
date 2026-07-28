@@ -1,5 +1,5 @@
 {
-    "updated_at": "2026-07-28T21:52:52.878818Z",
+    "updated_at": "2026-07-28T22:46:51.165285Z",
     "categories": {
         "anasayfa": [
             {
@@ -117,6 +117,12 @@
                 "pubDate": "2026-07-28T23:56:48+03:00"
             },
             {
+                "title": "Şampiyonlar Ligi'nde tur atlayan 6 takım belli oldu",
+                "link": "https://www.ntvspor.net/futbol/sampiyonlar-liginde-tur-atlayan-6-takim-belli-oldu-426944",
+                "description": "UEFA Şampiyonlar Ligi'nde ikinci eleme turu rövanşında 6 maç yapıldı.",
+                "pubDate": "2026-07-28T23:56:48+03:00"
+            },
+            {
                 "title": "35 yaşındaki Zeki Yavru'nun yeni takımı resmen belli oldu",
                 "link": "https://www.ntvspor.net/futbol/35-yasindaki-zeki-yavrunun-yeni-takimi-resmen-belli-oldu-426943",
                 "description": "Trendyol 1. Lig ekiplerinden Bursaspor, tecrübeli oyuncu Zeki Yavru ile anlaşmaya vardıklarını açıkladı.",
@@ -147,12 +153,6 @@
                 "pubDate": "2026-07-28T23:56:48+03:00"
             },
             {
-                "title": "Galatasaray Osimhen'in yedeğini buldu! Sezonun ilk maçında Beşiktaş'a karşı forma giymişti",
-                "link": "https://www.ntvspor.net/foto-galeri/galatasaray-osimhenin-yedegini-buldu-sezonun-ilk-macinda-besiktasa-karsi-forma-giymisti-426921",
-                "description": "Mauro Icardi'yle vedalaşan ve Victor Osimhen'e alternatif arayan Galatasaray, bu ismi Danimarka'da buldu. Sarı-kırmızılılar, yeni sezonun ilk maçında Beşiktaş'a karşı forma giyen 22 yaşındaki golcüyü Tüpraş Stadı'nda takip etti.",
-                "pubDate": "2026-07-28T23:56:48+03:00"
-            },
-            {
                 "title": "Anadolu Efes Collin Malcolm'u kadrosuna kattı",
                 "link": "https://www.ntvspor.net/basketbol/anadolu-efes-collin-malcolmu-kadrosuna-katti-426883",
                 "description": "Anadolu Efes Erkek Basketbol Takımı, ABD'li forvet oyuncusu Collin Malcolm'u renklerine bağladı.",
@@ -166,6 +166,12 @@
             }
         ],
         "futbol": [
+            {
+                "title": "Şampiyonlar Ligi'nde tur atlayan 6 takım belli oldu",
+                "link": "https://www.ntvspor.net/futbol/sampiyonlar-liginde-tur-atlayan-6-takim-belli-oldu-426944",
+                "description": "UEFA Şampiyonlar Ligi'nde ikinci eleme turu rövanşında 6 maç yapıldı.",
+                "pubDate": "2026-07-29T00:52:36+03:00"
+            },
             {
                 "title": "35 yaşındaki Zeki Yavru'nun yeni takımı resmen belli oldu",
                 "link": "https://www.ntvspor.net/futbol/35-yasindaki-zeki-yavrunun-yeni-takimi-resmen-belli-oldu-426943",
@@ -279,12 +285,6 @@
                 "link": "https://www.ntvspor.net/foto-galeri/besiktasin-transfer-hamlesi-eljif-elmas-bonservis-bedeli-belirlendi-426924",
                 "description": "Beşiktaş, RB Leipzig oyuncusu eski Fenerbahçeli Eljif Elmas'ı kadrosuna katmak için harekete geçti. Yaklaşık 10 milyon euro bonservis bedeli konuşulan 26 yaşındaki futbolcuyla Juventus'un da ilgilendiği belirtiliyor.",
                 "pubDate": "2026-07-28T17:21:53+03:00"
-            },
-            {
-                "title": "Muğlaspor'a Fenerbahçe'den takviye",
-                "link": "https://www.ntvspor.net/foto-galeri/muglaspora-fenerbahceden-takviye-426925",
-                "description": "Trendyol 1. Lig ekiplerinden Muğlaspor, Fenerbahçe'den stoper Yiğit Fidan'ı 1 yıllığına kiraladı.",
-                "pubDate": "2026-07-28T17:21:29+03:00"
             }
         ],
         "dunyadan_futbol": [
