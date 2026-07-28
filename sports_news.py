@@ -47,17 +47,14 @@ def rss_verilerini_guncelle():
     # Her kategoriden en son 15 haberi alalım
     for entry in feed.entries[:15]:
       haber_url = entry.link
-      # Detay sayfasından yüksek kaliteli görseli çekiyoruz
       gorsel = haber_gorselini_bul(haber_url)
 
-      # Eğer og:image bulunamazsa RSS içinde varsa açıklamadan yakalamaya çalışalım
       if not gorsel and "summary" in entry:
         soup_desc = BeautifulSoup(entry.summary, "html.parser")
         img_tag = soup_desc.find("img")
         if img_tag and img_tag.get("src"):
           gorsel = img_tag["src"]
 
-      # Tarih formatı
       pub_date = entry.get("published", datetime.now().isoformat())
 
       haber_objesi = {
@@ -71,7 +68,7 @@ def rss_verilerini_guncelle():
 
     tum_kategoriler[kategori] = kategori_haberleri
 
-  # JSON dosyasına kaydet
+  # Web arayüzünün doğrudan eşleşmesi için İngilizce anahtarlar (updated_at ve categories)
   veri = {"updated_at": datetime.now().isoformat(), "categories": tum_kategoriler}
 
   with open("sports_news.json", "w", encoding="utf-8") as f:
