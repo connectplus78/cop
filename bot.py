@@ -1,7 +1,7 @@
 from datetime import datetime
 import json
-import xml.etree.ElementTree as ET
 import urllib.request
+import xml.etree.ElementTree as ET
 
 # NTV Spor RSS adresleri
 RSS_URLS = {
@@ -16,22 +16,39 @@ RSS_URLS = {
 
 def fetch_rss(url):
   try:
-    req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
-    with urllib.request.urlopen(req, timeout=10) as response:
+    # Gerçek bir tarayıcı gibi görünmek için detaylı header ekledik
+    req = urllib.request.Request(
+        url,
+        headers={
+            "User-Agent": (
+                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+                " (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+            ),
+            "Accept": "application/rss+xml, application/xml, text/xml;q=0.9",
+        },
+    )
+
+    with urllib.request.urlopen(req, timeout=15) as response:
       xml_data = response.read()
       root = ET.fromstring(xml_data)
 
       items = []
+      # RSS yapısındaki channel altındaki item'ları bulur
       for item in root.findall(".//item"):
-        title = item.find("title").text if item.find("title") is not None else ""
-        link = item.find("link").text if item.find("link") is not None else ""
+        title_elem = item.find("title")
+        link_elem = item.find("link")
+        pub_date_elem = item.find("pubDate")
+        desc_elem = item.find("description")
+
+        title = title_elem.text if title_elem is not None and title_elem.text else ""
+        link = link_elem.text if link_elem is not None and link_elem.text else ""
         pub_date = (
-            item.find("pubDate").text if item.find("pubDate") is not None else ""
+            pub_date_elem.text
+            if pub_date_elem is not None and pub_date_elem.text
+            else ""
         )
         description = (
-            item.find("description").text
-            if item.find("description") is not None
-            else ""
+            desc_elem.text if desc_elem is not None and desc_elem.text else ""
         )
 
         items.append({
