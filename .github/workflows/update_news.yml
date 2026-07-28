@@ -3,7 +3,7 @@ name: NTV Spor RSS Bot
 on:
   schedule:
     # Her 3 saatte bir otomatik çalışır
-    - cron: '0 */3 * * *'
+    - cron: '0 * * * *'
   workflow_dispatch: # Manuel tetikleme için
 
 permissions:
