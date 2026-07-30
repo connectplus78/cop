@@ -2,35 +2,45 @@ import json
 from datetime import datetime
 import feedparser
 
-# Kullanılacak RSS Linkleri
+# Güncellenmiş Fotomaç RSS Linkleri
 RSS_URLS = {
-    "anasayfa": "https://www.ntvspor.net/rss/anasayfa",
-    "futbol": "https://www.ntvspor.net/rss/kategori/futbol",
-    "dunyadan_futbol": "https://www.ntvspor.net/rss/kategori/dunyadan-futbol",
-    "basketbol": "https://www.ntvspor.net/rss/kategori/basketbol",
-    "voleybol": "https://www.ntvspor.net/rss/kategori/voleybol",
-    "tenis": "https://www.ntvspor.net/rss/kategori/tenis"
+    "anasayfa": "https://www.fotomac.com.tr/rss/anasayfa.xml",
+    "basketbol": "https://www.fotomac.com.tr/rss/basketbol.xml",
+    "son24saat": "https://www.fotomac.com.tr/rss/son24saat.xml",
+    "superlig": "https://www.fotomac.com.tr/rss/superlig.xml",
+    "galatasaray": "https://www.fotomac.com.tr/rss/galatasaray.xml",
+    "fenerbahce": "https://www.fotomac.com.tr/rss/fenerbahce.xml",
+    "besiktas": "https://www.fotomac.com.tr/rss/besiktas.xml"
 }
 
 def extract_image(entry):
-    """RSS girdisinden farklı yöntemlerle görsel URL'si bulmaya çalışır."""
-    # 1. 'media_content' kontrolü
+    """RSS girdisinden (Fotomaç formatına uygun şekilde) görsel URL'sini yakalar."""
+    
+    # 1. 'enclosure' etiketini kontrol et
+    if 'enclosures' in entry and entry.enclosures:
+        for enc in entry.enclosures:
+            if 'href' in enc:
+                return enc['href']
+            elif 'url' in enc:
+                return enc['url']
+                
+    # 2. 'media_content' etiketini kontrol et
     if 'media_content' in entry and entry.media_content:
         for media in entry.media_content:
             if 'url' in media:
                 return media['url']
                 
-    # 2. 'enclosures' kontrolü
-    if 'enclosures' in entry and entry.enclosures:
-        for enc in entry.enclosures:
-            if 'href' in enc:
-                return enc['href']
+    # 3. 'media_thumbnail' etiketini kontrol et
+    if 'media_thumbnail' in entry and entry.media_thumbnail:
+        for thumb in entry.media_thumbnail:
+            if 'url' in thumb:
+                return thumb['url']
                 
-    # 3. 'summary' veya 'description' içindeki HTML tag'lerini kontrol et (Gelişmiş alternatif eklenebilir)
     return ""
 
 def fetch_rss(url):
     try:
+        # Bot engellerini aşmak için User-Agent ekliyoruz
         d = feedparser.parse(url, agent='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36')
         
         items = []
@@ -65,6 +75,7 @@ def main():
         "categories": all_news
     }
     
+    # Verileri dosyaya kaydet
     with open("news.json", "w", encoding="utf-8") as f:
         json.dump(output_data, f, ensure_ascii=False, indent=4)
         
