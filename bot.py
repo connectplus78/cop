@@ -30,25 +30,39 @@ def extract_image(entry):
     return ""
 
 def fetch_full_content(link):
-    """Haberin detay sayfasına giderek içeriğin tamamını (tüm paragrafları) çeker."""
+    """Haberin detay sayfasına giderek içeriğin tamamını paragraflar halinde çeker."""
     try:
         headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'}
         response = requests.get(link, headers=headers, timeout=10)
         if response.status_code == 200:
             soup = BeautifulSoup(response.content, 'html.parser')
             
-            # Fotomaç içerik alanı
-            content_div = soup.find('div', class_='news-content') or soup.find('div', class_='article-body') or soup.find('div', class_='text')
+            # Haber metninin bulunduğu ana alanı veya doğrudan tüm paragrafları hedefliyoruz
+            article_body = soup.find('div', class_='news-detail-content') or soup.find('div', class_='news-content') or soup.find('article')
             
-            if content_div:
-                for unwanted in content_div.find_all(['script', 'style', 'iframe', 'ins']):
+            if article_body:
+                # Reklam, sosyal medya veya gereksiz etiketleri temizle
+                for unwanted in article_body.find_all(['script', 'style', 'iframe', 'ins', 'div'], class_=['social-share', 'related-news', 'ad-container']):
                     unwanted.decompose()
-                return str(content_div)
+                
+                # İçerik içindeki "Devamı için tıklayınız" benzeri metin içeren linkleri/p etiketlerini temizle
+                for text_element in article_body.find_all(text=True):
+                    if "devamı için" in text_element.lower() or "tıklayınız" in text_element.lower():
+                        parent = text_element.parent
+                        if parent:
+                            parent.decompose()
+                            
+                return str(article_body)
             else:
+                # Alternatif olarak sayfadaki tüm paragraf etiketlerini al
                 paragraphs = soup.find_all('p')
-                full_text = "".join([str(p) for p in paragraphs if len(p.text.strip()) > 20])
-                if full_text:
-                    return full_text
+                clean_html = ""
+                for p in paragraphs:
+                    text = p.get_text().lower()
+                    if "devamı için" not in text and "tıklayınız" not in text and len(p.get_text().strip()) > 15:
+                        clean_html += str(p)
+                if clean_html:
+                    return clean_html
         return ""
     except Exception as e:
         print(f"İçerik çekilemedi ({link}): {e}")
@@ -67,8 +81,13 @@ def fetch_rss(url):
             print(f"Detaylar çekiliyor: {title[:30]}...")
             full_description = fetch_full_content(link)
             
+            # Eğer özel kazıma başarısız olursa RSS özetini al ama "Devamı için" kısmını temizle
             if not full_description:
                 full_description = entry.get('description', '')
+            
+            # Ekstra güvenlik: Metin içinde hala "Devamı için" kalmışsa kes at
+            if "Devamı için" in full_description:
+                full_description = full_description.split("Devamı için")[0]
 
             items.append({
                 "title": title.strip(),
@@ -96,7 +115,7 @@ def main():
     with open("news.json", "w", encoding="utf-8") as f:
         json.dump(output_data, f, ensure_ascii=False, indent=4)
         
-    print("Haberler başarıyla 'news.json' dosyasına kaydedildi ve tamamı eklendi.")
+    print("Haberler başarıyla 'news.json' dosyasına kaydedildi.")
 
 if __name__ == "__main__":
     main()
