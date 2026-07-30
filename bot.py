@@ -2,7 +2,7 @@ import json
 from datetime import datetime
 import feedparser
 import requests
-from bs4nment import BeautifulSoup  # Gerekirse bs4 kullanılacak
+from bs4 import BeautifulSoup
 
 # Fotomaç RSS Linkleri
 RSS_URLS = {
@@ -37,17 +37,14 @@ def fetch_full_content(link):
         if response.status_code == 200:
             soup = BeautifulSoup(response.content, 'html.parser')
             
-            # Fotomaç içerik alanı (genellikle haber metinlerinin bulunduğu kapsayıcı)
-            # Site yapısına göre ana metin elementini seçiyoruz
+            # Fotomaç içerik alanı
             content_div = soup.find('div', class_='news-content') or soup.find('div', class_='article-body') or soup.find('div', class_='text')
             
             if content_div:
-                # İçerikteki gereksiz reklam/sosyal medya etiketlerini temizleyebiliriz
                 for unwanted in content_div.find_all(['script', 'style', 'iframe', 'ins']):
                     unwanted.decompose()
                 return str(content_div)
             else:
-                # Alternatif olarak sayfadaki tüm paragraf etiketlerini topla
                 paragraphs = soup.find_all('p')
                 full_text = "".join([str(p) for p in paragraphs if len(p.text.strip()) > 20])
                 if full_text:
@@ -67,11 +64,9 @@ def fetch_rss(url):
             pub_date = entry.get('published', entry.get('updated', ''))
             image_url = extract_image(entry)
             
-            # RSS'deki kısa özet yerine haberin detay sayfasına gidip tam metni alıyoruz
             print(f"Detaylar çekiliyor: {title[:30]}...")
             full_description = fetch_full_content(link)
             
-            # Eğer siteden tam metin çekilemezse yedek olarak RSS özetini kullan
             if not full_description:
                 full_description = entry.get('description', '')
 
