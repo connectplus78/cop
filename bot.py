@@ -27,6 +27,39 @@ def extract_image(entry):
             if 'url' in thumb: return thumb['url']
     return ""
 
+def fetch_full_content(link):
+    """Haberin detay sayfasına giderek tüm paragraf metinlerini eksiksiz çeker."""
+    try:
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+        }
+        response = requests.get(link, headers=headers, timeout=10)
+        if response.status_code == 200:
+            soup = BeautifulSoup(response.content, 'html.parser')
+            
+            # Fotomaç haber detay metninin bulunduğu ana alanlar
+            content_div = soup.find('div', class_='news-detail-content') or soup.find('div', class_='news-content') or soup.find('article')
+            
+            if content_div:
+                # Reklamları ve gereksiz etiketleri temizle
+                for unwanted in content_div.find_all(['script', 'style', 'iframe', 'ins', 'div'], class_=['social-share', 'related-news', 'ad-container']):
+                    unwanted.decompose()
+                return str(content_div)
+            else:
+                # Bulamazsa sayfadaki tüm anlamlı paragrafları topla
+                paragraphs = soup.find_all('p')
+                full_html = ""
+                for p in paragraphs:
+                    text = p.get_text().strip()
+                    if len(text) > 20 and "devamı için" not in text.lower() and "tıklayınız" not in text.lower():
+                        full_html += str(p)
+                if full_html:
+                    return full_html
+        return ""
+    except Exception as e:
+        print(f"İçerik çekilemedi ({link}): {e}")
+        return ""
+
 def fetch_rss(url):
     try:
         d = feedparser.parse(url, agent='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36')
@@ -37,22 +70,19 @@ def fetch_rss(url):
             pub_date = entry.get('published', entry.get('updated', ''))
             image_url = extract_image(entry)
             
-            # Doğrudan RSS description'ı alıyoruz
-            desc = entry.get('description', '')
+            print(f"Tam metin çekiliyor: {title[:30]}...")
+            full_desc = fetch_full_content(link)
             
-            # "Devamı için" veya "tıklayınız" ifadelerini ve sonrasını metinden tamamen siliyoruz
-            if "Devamı için" in desc:
-                desc = desc.split("Devamı için")[0]
-            if "tıklayınız" in desc.lower():
-                # Tıklayınız kelimesinin geçtiği cümleyi temizle
-                parts = desc.split('.')
-                clean_parts = [p for p in parts if "tıklayınız" not in p.lower()]
-                desc = ".".join(clean_parts) + ("." if clean_parts else "")
+            # Eğer detay sayfası çekilemezse yedek olarak RSS özetini al ama "Devamı için" kısmını temizle
+            if not full_desc:
+                full_desc = entry.get('description', '')
+                if "Devamı için" in full_desc:
+                    full_desc = full_desc.split("Devamı için")[0]
 
             items.append({
                 "title": title.strip(),
                 "link": link.strip(),
-                "description": desc.strip(),
+                "description": full_desc.strip(),
                 "image": image_url.strip(),
                 "pubDate": pub_date.strip()
             })
@@ -64,6 +94,7 @@ def fetch_rss(url):
 def main():
     all_news = {}
     for category, url in RSS_URLS.items():
+        print(f"Kategori işleniyor: {category}...")
         all_news[category] = fetch_rss(url)
         
     output_data = {
@@ -71,10 +102,10 @@ def main():
         "categories": all_news
     }
     
-    with open("news.json", "w", encoding="text/html" if False else "utf-8") as f:
+    with open("news.json", "w", encoding="utf-8") as f:
         json.dump(output_data, f, ensure_ascii=False, indent=4)
         
-    print("Haberler güncellendi.")
+    print("Haberler tam metin olarak başarıyla 'news.json' dosyasına kaydedildi.")
 
 if __name__ == "__main__":
     main()
